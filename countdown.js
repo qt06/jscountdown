@@ -1,5 +1,5 @@
 /*!
- * JavaScript Countdown v1.0.0
+ * JavaScript Countdown v1.0.1
  * https://github.com/qt06/jscountdown
  *
  * Copyright 2017 qt06
@@ -48,17 +48,17 @@ if(leftTime < 0) {
 clearInterval(this.h);
 document.title = this.originalDocumentTitle;
 if(this.el !== null) {
-this.el.innerHTML = this.originalHTML;
+//this.el.innerHTML = this.originalHTML;
 }
 return;
 }
 var leftsecond = parseInt(leftTime/1000); 
 //var day1=parseInt(leftsecond/(24*60*60*6)); 
-var day=Math.floor(leftsecond/(60*60*24)); 
-var hour=Math.floor((leftsecond-day*24*60*60)/3600); 
-var minute=Math.floor((leftsecond-day*24*60*60-hour*3600)/60); 
-var second=Math.floor(leftsecond-day*24*60*60-hour*3600-minute*60); 
-var text = this.title + "："+day+"天"+hour+"小时"+minute+"分"+second+"秒";
+var day=Math.floor(leftsecond/86400); 
+var hour=Math.floor(leftsecond%86400/3600); 
+var minute=Math.floor(leftsecond%3600/60); 
+var second=Math.floor(leftsecond%60); 
+var text = this.title + "："+(day > 0 ? day+"天" : "")+(hour > 0 ? hour+"小时" : "")+(minute > 0 ? minute+"分" : "")+second+"秒";
 document.title = text + " - " + this.originalDocumentTitle;
 if(this.el !== null) {
 this.el.innerHTML = text;
